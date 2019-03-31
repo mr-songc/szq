@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,8 +6,8 @@
 </head>
 <style>
     body{
-        background-image: url("ggc/timg.jpg");
 
+        background-color: rgba(58, 8, 23, 0.63);
         background-size: 100%;
     }
     *{
@@ -25,20 +24,15 @@
 
         display: flex;
     }
-    .box2{
-        width: 250px;
-        height: 250px;
-        margin: -10px auto;
-    }
     .box2 img{
         border-radius: 50%;
-        width: 100%;
-        height: 100%;
+
+        width: 250px;
     }
     .box{
         border: 3px solid #cccccc;
         width: 830px;
-        margin: 100px auto;
+        margin: 100px  0px 0px 478px;
     }
     .div3{
         width: 450px;
@@ -154,49 +148,22 @@
     .bar-box{
         height: 5px;
         width: 300px;
-    }
-    .sousuo{
-        position: relative;
-        top: -66px;
-        left: 290px;
-        display: flex;
-        justify-content: space-between;
-        width: 500px;
-        height: 40px;
-    }
-    #searchTxt{
-        width: 400px;
-        height: 40px;
-    }
-    #searchBtn{
-        width:50px ;
-        height: 44px;
-    }
-    .yinliang{
-        height: 25px;
-        width: 55px;
-        position: relative;
-        top: 208px;
-        right: 100px;
+
+
     }
     .active{
         background-color: rgba(91, 53, 53, 0.78);
     }
 </style>
-
 <body >
-
-
 <div class="box">
     <div class="box1">
-
         <div class="box2">
-            <div class="sousuo"> <input type="text"  size="80px" id="searchTxt"><button  id="searchBtn">搜索</button></div>
-            <img src="ggc/aaaaaaa.jpg" alt="">
+            <img src="222.jpg" alt="">
         </div>
         <div class="div3">
             <div class="gm">
-                专属播放器 ------宋先生
+                绿色---  陈雪柠
 
             </div>
 
@@ -211,7 +178,7 @@
 
                 <p class="p1">
                     <span class="dtim">00:00</span>/
-                    <span class="tim">00:00</span>
+                    <span class="tim"></span>
                 </p>
             </div>
 
@@ -221,30 +188,57 @@
                 <div class="nex"></div>
                 <div class="moshi"></div>
                 <div class="volu"></div>
-
             </div>
 
         </div>
-        <div class="yinliang">
-            <button id="jia">+++</button>
-            <button id="jian">---</button>
-        </div>
+
     </div>
     <div class="lie">
         <ul>
-            <li><sapn></sapn> <span></span></li>
+            <li><sapn>浪子回头</sapn> <span>王雨萌</span></li>
 
         </ul>
     </div>
 
 </div>
 <audio></audio>
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<button id="jia">+++</button>
+<button id="jian">---</button>
+
 <script>
 
     var index=0;
     var rotDeg=0;
-    var data =[];
+    var date =[
+        {
+            gm: '出山',
+            gs:' 花粥',
+            pic:'ggc/1.png',
+            url:'ggc/出山.mp3'
+        },
+        {
+            gm: '霜雪千年',
+            gs:' 排骨教主',
+            pic:'ggc/5.jpg',
+            url:'ggc/霜雪千年.m4a'
+
+        },
+        {
+            gm: '清明上河图',
+            gs:'李玉刚',
+            pic:'ggc/3.jpg',
+            url:'ggc/清明上河图.m4a'
+
+        },
+        {
+            gm: '浪子回头',
+            gs:'茄子蛋',
+            pic:'ggc/2.jpg',
+            url:'ggc/浪子回头.m4a'
+
+        },
+
+    ];
     var timer=null;
     var  audio=document.querySelector('audio');
     var  pic=document.querySelector('.box2 img');
@@ -260,50 +254,7 @@
     var lie=document.querySelector('.lie ul');
     var jia=document.querySelector('#jia');
     var jian=document.querySelector('#jian');
-    var searchBtn=document.querySelector('#searchBtn');
-    var searchTxt=document.querySelector('#searchTxt');
-    gm
-    var gm=document.querySelector('.gm');
-    var lis = document.querySelector('li');
-    searchBtn.addEventListener('click',function () {
-        //搜索音乐列表
-        //进行ajax请求
-        // https://api.imjad.cn/cloudmusic/?type=search&s=出山
-        $.ajax({
-            url:'https://api.imjad.cn/cloudmusic/',
-            data:{
-                type:'search',
-                s:searchTxt.value
-            },
-            type: 'get',
-            success:function (data1) {
-                data=data1.result.songs;
-                var str='';
 
-                for (var i=0; i<data.length; i++){
-                    str+='<li><span >'+data[i].name+'</span><span>';
-                    for (var j=0; j<data[i].ar.length; j++){
-                        str +=data[i].ar[j].name +'  ';
-                    }
-                    str +='</span></li>';
-                };
-                lie.innerHTML = str;
-
-                var lis = document.querySelectorAll('li');
-
-                //lis[0].className='active';
-
-            },
-            error: function (err) {
-                console.log(err);
-            }
-
-        });
-
-
-    })
-
-    //音量调节键
     var yinliang = 10;
     jia.addEventListener('click', function () {
         yinliang += 1;
@@ -313,6 +264,16 @@
         yinliang -= 1;
         audio.volume = yinliang/10;
     })
+    var str='';
+
+    for (var i=0; i<date.length; i++){
+        str+='<li class="active"><span >'+date[i].gm+'</span><span>'+date[i].gs+'</span>';
+    };
+    lie.innerHTML = str;
+    console.log(str);
+    var lis = document.querySelectorAll('li');
+
+    lis[0].className='active';
 
     var moshi=document.querySelector('.moshi');
     //代表播放模式
@@ -324,111 +285,96 @@
         moshi.style.backgroundPositionY=modeAll[mode]+'px';
     });
 
-    $('.lie ul').on('click','li',function () {
-        index = $(this).index();
-
-        init();
-        paly();
-
-
-    });
-
-    for (var i=0; i<data.length; i++){
+    for (var i=0; i<date.length; i++){
         lis[i].index = i;
         lis[i].addEventListener('click',function () {
             index=this.index;
-            // init();
+            init();
+            paly();
+
+
         });
     }
     function init() {
-        rotDeg = 0;
-        //pic.src =data[index].pic;
-        //audio.src =data[index].url;
-        //gm.innerHTML=data[index].gm+'--'+data[index].gs;
+        rotDeg=0;
+        pic.src =date[index].pic;
+        audio.src =date[index].url;
+        gm.innerHTML=date[index].gm+'--'+date[index].gs;
         //切换列表选中项
 
-        // for (var i=0; i<data.length; i++){
-        //     lis[i].className = '';
-        //   } ;
-        // lis[index].className = 'active';
-
-        var songStr='';
-        for(var j=0; j<data[index].ar.length; j++){
-            songStr += data[index].ar[j].name + '   ';
-        }
-        console.log(songStr);
-        gm.innerHTML = data[index].name + '----'+ songStr;
+        for (var i=0; i<date.length; i++){
+            lis[i].className = '';
+        } ;
+        lis[index].className = 'active';
     }
-    // init();
-
+    init();
     //播放暂停
-    function paly() {
+    function paly(){
         //播放音乐
-        pic.src=data[index].al.picUrl;
-        audio.src = 'http://music.163.com/song/media/outer/url?id='+data[index].id+'.mp3';
         audio.play();
         //按钮变暂停
-        sta.style.backgroundPositionX = -30 + 'px';
+        sta.style.backgroundPositionX=-30+'px';
 
         clearInterval(timer);//清楚上一次定时器
         //封面旋转
-        timer = setInterval(function () {
+        timer=  setInterval(function () {
             rotDeg++;
-            pic.style.transform = 'rotate(' + rotDeg + 'deg)';
-        }, 30);
+            pic.style.transform= 'rotate('+rotDeg+'deg)';
+        },30);
     }
 
-    sta.addEventListener('click', function () {
-        if (audio.paused) {
+    sta.addEventListener('click',function () {
+        if (audio.paused){
             paly();
-
-        } else {
+        }else{
             audio.pause();
-            sta.style.backgroundPositionX = 0 + 'px';
+            sta.style.backgroundPositionX=0+'px';
             //清除定时器
             clearInterval(timer);
         }
 
 
+
+
     });
 
     //上一曲
-    prve.addEventListener('click', function () {
+    prve.addEventListener('click',function () {
         //三元运算
         index--;
-        index = index < 0 ? data.length - 1 : index;
+        index= index<0 ? date.length-1 : index;
         init();
         paly();
     });
 
     //下一曲
-    nex.addEventListener('click', function () {
+    nex.addEventListener('click',function () {
         //三元运算
         index++;
-        index = index > data.length - 1 ? 0 : index;
+        index= index>date.length-1? 0 : index;
         init();
         paly();
     });
     //canplay 当音频准备完成好触发canplay事件
-    audio.addEventListener('canplay', function () {
-        var min = parseInt(audio.duration / 60);
-        var se = parseInt(audio.duration % 60);
-        tim.innerHTML = fromatTim(min) + ':' + fromatTim(se);
-        audio.addEventListener('timeupdate', function () {
+    audio.addEventListener('canplay',function () {
+        var min = parseInt(audio.duration/60);
+        var se = parseInt(audio.duration%60);
+        tim.innerHTML = fromatTim(min)+':'+fromatTim(se);
+        audio.addEventListener('timeupdate',function () {
             //audio.currentTime获取当前播放时间
+            console.log(audio.currentTime);
+            var dmin = parseInt(audio.currentTime/60);
+            var dse = parseInt(audio.currentTime%60);
+            dtim.innerHTML=fromatTim(dmin)+':'+fromatTim(dse);
+            var  left= audio.currentTime/audio.duration * barBox.clientWidth;
+            bor3.style.left = left+'px';
+            bor2.style.width = left+'px';
 
-            var dmin = parseInt(audio.currentTime / 60);
-            var dse = parseInt(audio.currentTime % 60);
-            dtim.innerHTML = fromatTim(dmin) + ':' + fromatTim(dse);
-            var left = audio.currentTime / audio.duration * barBox.clientWidth;
-            bor3.style.left = left + 'px';
-            bor2.style.width = left + 'px';
-
-            if (audio.ended) {
+            if (audio.ended){
                 switch (mode) {
                     case 0:
                         index++;
-                        index = index > data.length - 1 ? 0 : index;
+                        index= index>date.length-1? 0 : index;
                         init();
                         paly();
 
@@ -439,11 +385,11 @@
                         break;
                     case 2:
                         do {
-                            var num = Math.floor(Math.random() * data.length);
+                            var num=   Math.floor(Math.random()*date.length);
 
-                        } while (num == index);
+                        }while (num == index );
 
-                        index = num;
+                        index=num;
 
 
                         init();
@@ -451,33 +397,31 @@
                         break;
                 }
                 //三元运算
-            }
-            ;
+
+            };
 
         });
-        barBox.addEventListener('click', function (e) {
+        barBox.addEventListener('click',function (e) {
             // 找到鼠标的位置
             //鼠标点击对象的位置
-            audio.currentTime = e.offsetX / barBox.clientWidth * audio.duration;
+            audio.currentTime=e.offsetX / barBox.clientWidth * audio.duration;
 
             //   console.log(barBox.clientWidth);
         });
 
     });
-
     //格式化时间
     function fromatTim(tim) {
-        return tim > 9 ? tim : '0' + tim;
+        return tim>9 ? tim:'0'+tim;
     };
-    window.addEventListener('keydown', function (e) {
+    window.addEventListener('keydown',function (e) {
         //检测按下了那个按键;
-        if (e.keyCode == 32) {
+        console.log(e.keyCode);
+        if (e.keyCode==32){
             paly();
 
         }
-
     });
-
 </script>
 </body>
 </html>

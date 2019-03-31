@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>音乐播放器</title>
+</head>
+<style>
+    *{
+        margin: 0px;
+        padding: 0px;
+    }
+    body{
+        background-color: rgba(102, 101, 67, 0.38);
+    }
+    .box{
+        width: 500px;
+        border: 1px solid #000000;
+        padding: 20px;
+        margin: 50px auto;
+
+    }
+
+    .ctr-box{
+        width: 100%;
+
+        display: flex;
+    }
+    .ctr-pic{
+        width: 150px;
+
+    }
+    .ctr-pic img{
+        width: 100%;
+        border-radius: 50%;
+    }
+    .ctr-body{
+        width: 350px;
+
+    }
+    .bar{
+        width: 200px;
+        position: relative;
+        margin: 15px;
+    }
+    .total{
+        width: 200px;
+        height: 2px;
+        background-color: red;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .now{
+        width: 150px;
+        height: 2px;
+        background-color: #333333;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .ctr-bar{
+        width: 8px;
+        height: 8px;
+        background-color: #8661ff;
+        border-radius: 50%;
+        position: absolute;
+        top: -3px;
+        left: 150px;
+    }
+    .singer{
+        margin: 30px 0 0 30px;
+    }
+    .time{
+        position: absolute;
+        top:-10px;
+        left:240px;
+
+    }
+    .ctr-btn{
+        display: flex;
+        margin: 60px 20px 20px 20px;
+
+    }
+    .ctr-btn div{
+        background: url("ggc/a2.png") no-repeat;
+    }
+    .ctr-btn .prev{
+        width: 20px;
+        height: 30px;
+        position: relative;
+        right: 200px;
+        bottom: -33px;
+        background-position-y:2px;
+    }
+    .ctr-btn .star{
+        width: 20px;
+        height: 20px;
+        position: relative;
+        right: 273px;
+        bottom: -40px;
+        background-position-y:-30px;
+    }
+    .ctr-btn .next{
+        width: 20px;
+        height: 20px;
+        position: relative;
+        right: 185px;
+        bottom: -40px;
+        background-position-y:-52px;
+    }
+    .ctr-btn .volume{
+        width: 24px;
+        height: 20px;
+        position: relative;
+        right: 100px;
+        bottom: -40px;
+        background-position-y:-143px;
+    }
+    .ctr-btn .xun{
+        width: 20px;
+        height: 20px;
+        position: relative;
+        right: 175px;
+        bottom: -40px;
+        background-position-y:-72px;
+    }
+    .list-box{
+        width: 100%;
+        height:80px ;
+    }
+    ul{
+        list-style: none;
+    }
+    .list-box{
+        width: 100%;
+        padding: 20px;
+        height: 150px;
+        position: relative;
+        bottom: -40px;
+        box-sizing: border-box;
+
+    }
+    .list-box li{
+        height: 30px;
+        line-height: 30px;
+        display: flex;
+        border-bottom: 1px dashed #666;
+        justify-content:space-between ;
+    }
+</style>
+<body>
+<!--大盒子-->
+<div class="box">
+    <!--控制组件盒子-->
+    <div class="ctr-box">
+        <!--专辑封面-->
+        <div class="ctr-pic">
+            <img src="ggc/2.jpg">
+        </div>
+        <div class="ctr-body">
+            <!--歌名-->
+            <div class="singer">
+                <span>浪子回头</span>
+            </div>
+            <!--进度条-->
+            <div class="bar">
+                <div class="total"></div>
+                <div class="now"></div>
+                <div class="ctr-bar"></div>
+                <div class="time">
+                    <span>00:00/3:54</span>
+                </div>
+            </div>
+
+        </div>
+        <!--控制按钮-->
+        <div class="ctr-btn">
+            <div class="prev"></div>
+            <div class="star"></div>
+            <div class="next"></div>
+            <div class="volume"></div>
+            <div class="xun"></div>
+        </div>
+    </div>
+
+    <!--音乐盒子列表-->
+    <div class="list-box">
+        <ul>
+            <li><sapn>浪子回头</sapn> <span>王雨萌</span></li>
+            <li><sapn>1111</sapn> <span>2222</span></li>
+            <li><sapn>1111</sapn> <span>2222</span></li>
+        </ul>
+
+    </div>
+</div>
+
+<audio> </audio>
+
+<script>
+    //用来保存歌曲数据  我们将data模拟成 后台传给我们的数据
+    //后台一般情况下会传给我们json 我们就模拟一个json数据
+    //一首歌包含的数据:歌名  歌手名  专辑封面  歌曲播放地址
+
+    var data= [
+
+        {
+            song:'出山',
+            singer:'花粥',
+            pic:'ggc/1.png',
+            url:'ggc/出山.mp3',
+        },{
+            song:'浪子回头',
+            singer:'王雨萌',
+            pic: 'ggc/2.jpg',
+            url: 'ggc/浪子回头.m4a'
+        }, {
+            song:'清明上河图',
+            singer:'李玉刚',
+            pic: 'ggc/3.jpg',
+            url: 'ggc/清明上河图.m4a'
+        }
+    ];
+    //获取元素：
+    //querySelector只能获取到一个元素
+    var audio = document.querySelector('audio');
+   var pic = document.querySelector('.ctr-pic img');
+    var singer = document.querySelector('.singer span');
+    var star = document.querySelector('.ctr-btn .start ');
+    audio.src= data[1].url;
+
+    //给index 一个标示
+   var index=2;
+    //创建一个init方法
+   function init(){
+        //初始化专辑封面，歌手歌曲名，播放路径，播放时间
+        pic.src=data[index].pic;
+        audio.src =data[index].url;
+       singer.innerHTML=data[index].song + '---'+data[index].singer;
+    }
+    init();
+//播放
+     prev.addEventListener('click',function () {
+         //播放音乐
+         audio.play();
+         //播放按钮变成暂停
+         prev.style.backgroundPositionY=-30+ 'px';
+     })
+</script>
+</body>
+</html>

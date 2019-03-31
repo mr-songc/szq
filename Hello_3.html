@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>盒子模型</title>
+</head>
+<style>
+    *{
+        margin: 0px;
+        padding: 0px;
+    }
+.aaa{
+/*版心*/
+    width: 80%;
+    margin: 10px auto;
+}
+#item{
+    width: 25%;
+    float: left;
+    padding: 10px;
+    box-sizing: border-box;
+}
+    #item-box{
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        border: 1px solid red;
+    }
+    #item-box img{
+        width: 100%;
+    }
+    #item-box p{
+        text-align: center;
+        font-size: 10px;
+    }
+
+    /*html中 只有中文会换行，英文和数字不会自动换行*/
+    /*word-wrap:break-word   强制自动换行*/
+
+</style>
+<body>
+<div class="aaa">
+    <div id="item">
+        <div id="item-box"><img src="1.jpg">
+        <p>采用顶级的羊皮材料，更时尚，更有b格，搭配秋冬服饰更有独特的韵味</p></div>
+    </div>
+    <div id="item">
+       <div id="item-box"> <img src="1.jpg">
+           <p>采用顶级的羊皮材料，更时尚，更有b格，搭配秋冬服饰更有独特的韵味</p></div>
+    </div>
+    <div id="item">
+       <div id="item-box"> <img src="1.jpg">
+           <p>采用顶级的羊皮材料，更时尚，更有b格，搭配秋冬服饰更有独特的韵味</p></div>
+    </div>
+    <div id="item">
+       <div id="item-box"> <img src="1.jpg">
+           <p>采用顶级的羊皮材料，更时尚，更有b格，搭配秋冬服饰更有独特的韵味</p></div>
+    </div>
+    <div id="item">
+        <div id="item-box"> <img src="1.jpg">
+            <p>采用顶级的羊皮材料，更时尚，更有b格，搭配秋冬服饰更有独特的韵味</p></div>
+    </div>
+    <div id="item">
+        <div id="item-box"> <img src="1.jpg">
+            <p>采用顶级的羊皮材料，更时尚，更有b格，搭配秋冬服饰更有独特的韵味</p></div>
+    </div><div id="item">
+    <div id="item-box"> <img src="1.jpg">
+        <p>采用顶级的羊皮材料，更时尚，更有b格，搭配秋冬服饰更有独特的韵味</p></div>
+</div>
+
+
+</div>
+</body>
+</html>
